@@ -26,9 +26,10 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   async function insertPair(character: string, pair: string): Promise<string> {
     let samePair = character == pair
-    let arr = await nvim.eval('[bufnr("%"),get(b:,"coc_pairs_disabled",[]),coc#util#cursor(),&filetype,getline("."),mode()]')
+    let arr = await nvim.eval('[bufnr("%"),get(b:,"coc_pairs_disabled",[]),coc#util#cursor(),&filetype,getline("."),mode(),col("."),col("$")]')
     let filetype = arr[3]
     if (disableLanguages.indexOf(filetype) !== -1) return character
+    if (arr[6] !== arr[7]-1) return character
     let line = arr[4]
     let mode = arr[5]
     if (mode.startsWith('R')) return character
