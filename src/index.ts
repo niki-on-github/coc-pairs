@@ -35,7 +35,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     let chars = arr[1]
     if (chars && chars.length && chars.indexOf(character) !== -1) return character
     let pos = { line: arr[2][0], character: arr[2][1] }
-    if (pos.character === arr[6]-1) return character
+    if (pos.character !== arr[6]) return character // enable only at line end
     let pre = line.slice(0, pos.character)
     let rest = line.slice(pos.character)
     let previous = pre.length ? pre[pre.length - 1] : ''
