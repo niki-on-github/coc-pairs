@@ -1,45 +1,20 @@
 # coc-pairs
 
-Auto pair extension for [coc.nvim](https://github.com/neoclide/coc.nvim).
-
-**Note** you can use other vim auto pairs plugins with coc.nvim, it's a
-simplified implementation to make auto pairs work like in VSCode.
-
-**Note** `b:coc_paires` have renamed to `b:coc_pairs`
-
-For enhanced `<CR>` experience, checkout `:h coc#on_enter()`.
-
-## Tips
-
-- You should disable/remove other auto pair plugins for this extension work as expected.
-- When you type a paired character which is just the next character, it would just move to the right by one column.
-- When the previous content ends with two inserting characters, the characters would just be inserted without inserting the paired character. This makes inserting triple quotes easier.
-- `'` only pairs when the character before is not a word character.
-- for `<` to insert paired `>`, the previous character should not be an empty space.
+Forked from [neoclide/coc-pairs](https://github.com/neoclide/coc-pairs). The plugin is currently not smart enough if you want to add brackets within the code. Because of Issue [#28](https://github.com/neoclide/coc-pairs/issues/28) I have created a fork which activates the auto pairs function only at the end of the line.
 
 ## Install
 
-In vim/neovim, run this command:
+If you use Plug add this to your `init.vim`:
 
 ```
-:CocInstall coc-pairs
+Plug 'niki-on-github/coc-pairs', {'do': 'yarn install --frozen-lockfile && yarn build'}
 ```
+
+Make sure you have uninstalled the original plugin via `:CocUninstall coc-pairs`. Then install the patched plugin with `PlugInstall`.
 
 ## Features
 
-- Insert pair characters automatically.
-- Buffer local pairs, ex: `autocmd FileType tex let b:coc_pairs = [["$", "$"]]`
-
-## Options
-
-- `pairs.disableLanguages`, list of language ids to disable this extension, default: `[]`.
-- `pairs.enableCharacters`, list of enabled characters, default: `` ["(", "[", "{", "<", "'", "\"", "`"] ``.
-- `pairs.enableBackspace`, enable imap for backspace to remove paired characters,
-  default: `true`, won't work when `<bs>` is already mapped.
-
-To disable characters for a specified filetypes, you can use `b:coc_pairs_disabled`, ex:
-
-    autocmd FileType markdown let b:coc_pairs_disabled = ['`']
+- Insert pair characters automatically only at the end of an line.
 
 ## License
 
