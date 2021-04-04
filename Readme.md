@@ -4,7 +4,13 @@ Forked from [neoclide/coc-pairs](https://github.com/neoclide/coc-pairs). The plu
 
 ## Install
 
-If you use Plug add this to your `init.vim`:
+Install build dependencies on Arch Linux:
+
+```bash
+sudo pacman -Sy yarn
+```
+
+Install this plugin with [Plug](https://github.com/junegunn/vim-plug): Add to your `init.vim`:
 
 ```
 Plug 'niki-on-github/coc-pairs', {'do': 'yarn install --frozen-lockfile && yarn build'}
