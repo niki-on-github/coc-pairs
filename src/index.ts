@@ -83,7 +83,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
   }
 
   async function closePair(character: string): Promise<string> {
-    let [cursor, filetype, line, line_len] = await nvim.eval('[coc#util#cursor(),&filetype,getline("."),strlen(getline(".")]') as any
+    let [cursor, filetype, line, line_len] = await nvim.eval('[coc#util#cursor(),&filetype,getline("."),strlen(getline("."))]') as any
     if (disableLanguages.indexOf(filetype) !== -1) return character
     let rest = line.slice(cursor[1])
     if (cursor[1] !== line_len) return character // enable only at line end
